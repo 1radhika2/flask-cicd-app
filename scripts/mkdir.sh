@@ -8,3 +8,4 @@ python3 -m pip install Flask --user
 EOF
 
 chmod +x /web/scripts/mkdir.sh
+chmod +x /web/scripts/*.sh
