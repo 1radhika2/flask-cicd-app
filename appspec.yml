@@ -17,9 +17,6 @@ hooks:
     - location: scripts/install_deps.sh
       timeout: 300
       runas: root
-    - location: scripts/fix_permissions.sh
-      timeout: 300
-      runas: root 
   ApplicationStart:
     - location: scripts/start_flask.sh
       timeout: 300
