@@ -52,4 +52,4 @@ artifacts:
     - appspec.yml
     - templates/**/*
     - scripts/**/*
-  name: flask-web-app-$(date +%Y-%m-%d-%H-%M-%S)
+   name: flask-web-app
