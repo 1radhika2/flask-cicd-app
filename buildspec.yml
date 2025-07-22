@@ -1,24 +1,55 @@
 version: 0.2
 
+env:
+  variables:
+    PYTHON_VERSION: "3.9"
+
 phases:
   install:
+    runtime-versions:
+      python: 3.9
     commands:
-        - python -m pip install Flask
+      - echo "Installing dependencies..."
+      - python3 --version
+      - pip3 --version
+      - pip3 install --upgrade pip
+      - pip3 install Flask requests  # Install both together
+      - echo "Dependencies installed successfully"
+      - echo "Verifying Flask installation:"
+      - python3 -c "import flask; print(f'Flask version: {flask.__version__}')"
+
+  pre_build:
+    commands:
+      - echo "Pre-build phase started on `date`"
+      - echo "Checking Python syntax for all Python files..."
+      - python3 -m py_compile web.py
+      - python3 -m py_compile scripts/stop_flask.py
+      - echo "Syntax check completed"
+
   build:
     commands:
-      - echo Build started on `date`
-      - echo Compiling the Python code...
-      - python test_app.py
+      - echo "Build started on `date`"
+      - echo "Running application tests..."
+      - python3 test_app.py
+      - echo "Tests completed successfully"
+      - echo "Making scripts executable..."
+      - chmod +x scripts/*.sh
+      - chmod +x scripts/*.py
+
   post_build:
     commands:
-      - echo Build completed on `date`
+      - echo "Post-build phase started on `date`"
+      - echo "Build completed successfully on `date`"
+      - ls -la
+      - echo "Listing scripts directory:"
+      - ls -la scripts/
+
 artifacts:
   files:
     - web.py
+    - test_app.py
+    - requirements.txt
     - appspec.yml
-    - templates/layout.html
-    - templates/test.html
-    - scripts/mkdir.sh
-    - scripts/start_flask.sh
-    - scripts/stop_flask1.sh
-    - scripts/stop_flask.py
+    - templates/**/*
+    - scripts/**/*
+  name: flask-web-app-$(date +%Y-%m-%d-%H-%M-%S)

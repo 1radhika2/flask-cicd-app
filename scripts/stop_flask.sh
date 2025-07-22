@@ -1,6 +1,8 @@
-#!/usr/bin/python
-import requests
+# Create corrected stop_flask.sh
+cat > /web/scripts/stop_flask.sh << 'EOF'
+#!/bin/bash
+# Alternative method to stop Flask - kill by process
+pkill -f "python.*web.py" || echo "No Flask process found"
+EOF
 
-requests.post("http://127.0.0.1/shutdown")
-
-
+chmod +x /web/scripts/stop_flask.sh
