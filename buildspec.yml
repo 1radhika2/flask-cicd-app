@@ -52,4 +52,4 @@ artifacts:
     - appspec.yml
     - templates/**/*
     - scripts/**/*
-   name: flask-web-app
+  name: flask-web-app
