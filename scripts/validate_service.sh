@@ -1,4 +1,4 @@
-# Create the corrected validate_service.sh
+# Update the validation script
 cat > /web/scripts/validate_service.sh << 'EOF'
 #!/bin/bash
 # Wait a moment for the service to start
