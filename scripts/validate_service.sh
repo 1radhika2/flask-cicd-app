@@ -1,9 +1,6 @@
-# Update the validation script
-cat > /web/scripts/validate_service.sh << 'EOF'
 #!/bin/bash
 # Wait a moment for the service to start
 sleep 5
-
 # Check if the Flask process is running
 if pgrep -f "python3.*web.py" > /dev/null; then
     echo "Flask process is running"
@@ -19,5 +16,3 @@ else
     echo "Flask process is not running"
     exit 1
 fi
-EOF
-chmod +x /web/scripts/validate_service.sh
