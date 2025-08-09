@@ -26,10 +26,7 @@ hooks:
       timeout: 300
       runas: root
   ValidateService:
-    - location: /bin/bash
+    - location: scripts/validate_service.sh
       timeout: 300
       runas: root
-      commands:
-        - whoami
-        - which python || echo "python command not found"
-        - which python3 || echo "python3 command not found"
+
